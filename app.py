@@ -5,7 +5,7 @@ import plotly.graph_objects as go
 import html
 import re
 
-st.set_page_config(page_title="Gryfindors | Eco-Footprint", layout="wide")
+st.set_page_config(page_title="Gryfindors | Eco-Footprint", layout="wide", initial_sidebar_state="expanded")
 
 st.markdown("""
     <style>
@@ -47,6 +47,39 @@ st.markdown("""
         letter-spacing: -0.02em;
     }
 
+    /* Mobile responsiveness base */
+    @media (max-width: 768px) {
+        .stApp {
+            padding: 8px !important;
+        }
+
+        h1 {
+            font-size: 1.8rem !important;
+        }
+
+        h2 {
+            font-size: 1.4rem !important;
+        }
+
+        h3 {
+            font-size: 1.1rem !important;
+        }
+    }
+
+    @media (max-width: 480px) {
+        h1 {
+            font-size: 1.5rem !important;
+        }
+
+        h2 {
+            font-size: 1.2rem !important;
+        }
+
+        h3 {
+            font-size: 1rem !important;
+        }
+    }
+
     /* Modern Card UI */
     .metric-card {
         background: var(--surface);
@@ -60,6 +93,36 @@ st.markdown("""
         text-align: center;
     }
 
+    @media (max-width: 768px) {
+        .metric-card {
+            padding: 18px 16px;
+            margin-bottom: 14px;
+        }
+
+        .metric-card h2 {
+            font-size: 1.6rem !important;
+        }
+
+        .metric-card h4 {
+            font-size: 0.75rem !important;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .metric-card {
+            padding: 14px 12px;
+            margin-bottom: 12px;
+        }
+
+        .metric-card h2 {
+            font-size: 1.4rem !important;
+        }
+
+        .metric-card h4 {
+            font-size: 0.7rem !important;
+        }
+    }
+
     .metric-card h4 { color: var(--text-muted) !important; margin-bottom: 8px; font-size: 0.84rem; text-transform: uppercase; }
     .metric-card h2 { color: var(--text-main) !important; margin: 0; font-size: 2rem; }
 
@@ -70,6 +133,19 @@ st.markdown("""
         padding: 14px 16px;
         box-shadow: 0 8px 16px rgba(17, 24, 39, 0.06);
         margin-top: 10px;
+    }
+
+    @media (max-width: 768px) {
+        .tip-card {
+            padding: 12px 14px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .tip-card {
+            padding: 10px 12px;
+            border-radius: 10px;
+        }
     }
 
     .tip-title {
@@ -87,6 +163,36 @@ st.markdown("""
         box-shadow: 0 10px 24px rgba(109, 40, 217, 0.12);
         text-align: center;
         margin-bottom: 12px;
+    }
+
+    @media (max-width: 768px) {
+        .college-kpi-card {
+            padding: 18px 14px;
+            margin-bottom: 10px;
+        }
+
+        .college-kpi-card h2 {
+            font-size: 1.6rem !important;
+        }
+
+        .college-kpi-card h4 {
+            font-size: 0.78rem !important;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .college-kpi-card {
+            padding: 14px 12px;
+            margin-bottom: 8px;
+        }
+
+        .college-kpi-card h2 {
+            font-size: 1.4rem !important;
+        }
+
+        .college-kpi-card h4 {
+            font-size: 0.7rem !important;
+        }
     }
 
     .college-kpi-card h4 {
@@ -110,6 +216,32 @@ st.markdown("""
         border: 1px solid var(--border);
         border-radius: 14px;
         padding: 12px 14px;
+        list-style-position: inside;
+        padding-left: 20px;
+    }
+
+    @media (max-width: 768px) {
+        .recommendation-list {
+            padding: 10px 12px 10px 20px;
+        }
+
+        .recommendation-list li {
+            font-size: 0.9rem;
+            margin: 8px 0;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .recommendation-list {
+            padding: 8px 10px 8px 18px;
+        }
+
+        .recommendation-list li {
+            font-size: 0.85rem;
+            margin: 6px 0;
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
     }
 
     .recommendation-list li {
@@ -121,7 +253,7 @@ st.markdown("""
         background: #FFFFFF;
         border: 1px solid #C4B5FD;
         border-radius: 14px;
-        overflow: hidden;
+        overflow: auto;
         box-shadow: 0 8px 18px rgba(109, 40, 217, 0.12);
     }
 
@@ -129,6 +261,32 @@ st.markdown("""
         width: 100%;
         border-collapse: collapse;
         font-size: 0.95rem;
+    }
+
+    @media (max-width: 768px) {
+        .leaderboard-table {
+            font-size: 0.85rem;
+        }
+
+        .leaderboard-table thead th,
+        .leaderboard-table tbody td {
+            padding: 8px 10px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .leaderboard-table {
+            font-size: 0.75rem;
+        }
+
+        .leaderboard-table thead th,
+        .leaderboard-table tbody td {
+            padding: 6px 8px;
+        }
+
+        .leaderboard-table thead th {
+            white-space: nowrap;
+        }
     }
 
     .leaderboard-table thead th {
@@ -170,6 +328,21 @@ st.markdown("""
         font-weight: 600 !important;
         width: 100%;
         box-shadow: 0 8px 18px rgba(124, 58, 237, 0.28) !important;
+        padding: 12px 16px !important;
+    }
+
+    @media (max-width: 768px) {
+        .stButton>button {
+            padding: 10px 14px !important;
+            font-size: 0.9rem !important;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .stButton>button {
+            padding: 9px 12px !important;
+            font-size: 0.85rem !important;
+        }
     }
 
     .stButton>button:hover {
@@ -178,13 +351,42 @@ st.markdown("""
 
     /* Tabs */
     .stTabs [data-baseweb="tab-list"] { gap: 10px; }
+    
+    @media (max-width: 768px) {
+        .stTabs [data-baseweb="tab-list"] { 
+            gap: 8px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .stTabs [data-baseweb="tab-list"] { 
+            gap: 4px;
+        }
+    }
+
     .stTabs [data-baseweb="tab"] {
         background-color: #FFFFFF;
         border-radius: 8px 8px 0 0;
         padding: 10px 20px;
         color: var(--text-main);
         border: 1px solid var(--border);
+        font-size: 0.95rem;
     }
+
+    @media (max-width: 768px) {
+        .stTabs [data-baseweb="tab"] {
+            padding: 8px 14px;
+            font-size: 0.85rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .stTabs [data-baseweb="tab"] {
+            padding: 6px 10px;
+            font-size: 0.75rem;
+        }
+    }
+
     .stTabs [aria-selected="true"] {
         background-color: var(--primary-soft) !important;
         color: var(--primary-dark) !important;
@@ -297,29 +499,102 @@ st.markdown("""
 
     .dev-footer {
         margin-top: 28px;
-        padding: 14px 12px;
+        padding: 20px 16px;
         border-top: 2px solid #A78BFA;
-        background: rgba(255, 255, 255, 0.7);
-        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 12px;
+    }
+
+    @media (max-width: 768px) {
+        .dev-footer {
+            margin-top: 20px;
+            padding: 16px 12px;
+            border-radius: 10px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .dev-footer {
+            margin-top: 14px;
+            padding: 14px 10px;
+            border-radius: 8px;
+        }
     }
 
     .dev-footer-title {
         text-align: center;
         color: #4C1D95 !important;
         font-weight: 700;
-        margin-bottom: 8px;
+        margin-bottom: 14px;
         letter-spacing: 0.03em;
+        font-size: 1.1rem;
+    }
+
+    @media (max-width: 768px) {
+        .dev-footer-title {
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .dev-footer-title {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
     }
 
     .dev-footer-names {
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 18px;
         flex-wrap: wrap;
+        gap: 12px;
         color: #111827 !important;
-        font-family: Algerian, "Times New Roman", serif;
-        font-size: 1rem;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    @media (max-width: 768px) {
+        .dev-footer-names {
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .dev-footer-names {
+            gap: 4px;
+            font-size: 0.8rem;
+        }
+    }
+
+    .dev-name-separator {
+        color: #A78BFA;
+        font-weight: 300;
+    }
+
+    @media (max-width: 480px) {
+        .dev-name-separator {
+            font-size: 0.75rem;
+        }
+    }
+
+    .dev-name-item {
+        display: inline-block;
+        padding: 4px 8px;
+        background: #F5F3FF;
+        border-radius: 6px;
+        border: 1px solid #E9D5FF;
+        font-family: 'Algerian', 'Times New Roman', serif;
+    }
+
+    @media (max-width: 480px) {
+        .dev-name-item {
+            padding: 2px 4px;
+            font-size: 0.8rem;
+        }
     }
     </style>
     """, unsafe_allow_html=True)
@@ -527,16 +802,17 @@ st.markdown("### College Sustainability Analysis Engine")
 tab1, tab2 = st.tabs(["Live Demo Calculator", "College Data Analysis"])
 
 with tab1:
+    # Create responsive column layout
     col_in, col_res = st.columns([1, 1.5], gap="large")
     
     with col_in:
         st.subheader("Personal Factors")
-        name = st.text_input("Student Name", "Volunteer")
-        t = st.selectbox("Transport", ["Walking/Bicycle", "Public Bus", "Bike", "Car"])
-        e = st.select_slider("Laptop Hours", ["0-2", "2-5", "5-8", "8+"])
-        d = st.selectbox("Diet", ["Vegetarian", "Mixed", "Non-vegetarian"])
+        name = st.text_input("Student Name", "Volunteer", help="Enter your name for personalized results")
+        t = st.selectbox("Transport Mode", ["Walking/Bicycle", "Public Bus", "Bike", "Car"])
+        e = st.select_slider("Laptop Hours Daily", ["0-2", "2-5", "5-8", "8+"])
+        d = st.selectbox("Diet Type", ["Vegetarian", "Mixed", "Non-vegetarian"])
         
-        if st.button("Calculate My Impact"):
+        if st.button("Calculate My Impact", use_container_width=True):
             t_s = {"Walking/Bicycle": 5, "Public Bus": 12, "Bike": 20, "Car": 35}[t]
             e_s = {"0-2": 6, "2-5": 12, "5-8": 20, "8+": 28}[e]
             f_s = {"Vegetarian": 10, "Mixed": 20, "Non-vegetarian": 30}[d]
@@ -578,13 +854,14 @@ with tab1:
                 plot_bgcolor="#FFFFFF",
                 paper_bgcolor="rgba(0,0,0,0)",
                 margin=dict(l=10, r=10, t=50, b=20),
+                height=400,
             )
             st.plotly_chart(fig_demo, use_container_width=True)
 
             st.caption("Explanation: each bar shows contribution to your footprint score. Lower category scores indicate more sustainable habits.")
             st.markdown("<div class='tip-card'><div class='tip-title'>Personalized Tips to Reduce Footprint</div></div>", unsafe_allow_html=True)
             for tip in res['tips']:
-                st.write(f"- {tip}")
+                st.write(f"{tip}")
         else:
             st.markdown("<div class='tip-card'><div class='tip-title'>Live Demo Calculator</div>Enter your factors and click <b>Calculate My Impact</b> to see score, level, graph, and tips.</div>", unsafe_allow_html=True)
 
@@ -623,9 +900,11 @@ with tab2:
                 xaxis_title="Total Footprint Score",
                 yaxis_title="Number of Students",
                 paper_bgcolor="rgba(0,0,0,0)",
+                height=400,
+                margin=dict(l=10, r=10, t=50, b=20),
             )
             st.plotly_chart(fig_hist, use_container_width=True)
-            st.caption("Explanation: this chart shows how student footprint scores are distributed across the campus.")
+            st.caption("Chart shows how student footprint scores are distributed across the campus.")
             
         with c_right:
             avg_year = df.groupby('What is your year of study?')['TotalScore'].mean().reset_index()
@@ -638,10 +917,13 @@ with tab2:
                 xaxis_title="Year of Study",
                 yaxis_title="Average Score",
                 paper_bgcolor="rgba(0,0,0,0)",
+                height=400,
+                margin=dict(l=10, r=10, t=50, b=20),
             )
             st.plotly_chart(fig_year, use_container_width=True)
-            st.caption("Explanation: compares average ecological footprint between study years to identify focus groups.")
+            st.caption("Compares average ecological footprint between study years to identify focus groups.")
 
+        st.markdown("---")
         st.subheader("Campus Personalization Tips")
         campus_tips = get_campus_tips(df)
         tips_html = "".join([f"<li>{tip}</li>" for tip in campus_tips])
@@ -655,6 +937,7 @@ with tab2:
             unsafe_allow_html=True,
         )
 
+        st.markdown("---")
         st.subheader("Sustainability Leaderboard")
         st.write("Top students with the lowest environmental impact.")
         name_col = 'Name' if 'Name' in df.columns else df.columns[0]
@@ -663,10 +946,12 @@ with tab2:
         leaderboard.insert(0, 'Rank', range(1, len(leaderboard) + 1))
 
         rows_html = ""
-        for _, row in leaderboard.iterrows():
+        medals = ['🥇', '🥈', '🥉']
+        for idx, (_, row) in enumerate(leaderboard.iterrows()):
+            medal = medals[idx] if idx < 3 else '✓'
             rows_html += (
                 f"<tr>"
-                f"<td>{int(row['Rank'])}</td>"
+                f"<td>{medal}</td>"
                 f"<td>{html.escape(str(row['Student']))}</td>"
                 f"<td>{html.escape(str(row['Year of Study']))}</td>"
                 f"<td><span class='score-pill'>{float(row['Total Score']):.1f}</span></td>"
@@ -679,10 +964,10 @@ with tab2:
                 <table class='leaderboard-table'>
                     <thead>
                         <tr>
-                            <th style='width:80px;'>Rank</th>
+                            <th style='width:50px;'>Rank</th>
                             <th>Student</th>
-                            <th style='width:220px;'>Year of Study</th>
-                            <th style='width:160px;'>Total Score</th>
+                            <th style='width:150px;'>Year</th>
+                            <th style='width:120px;'>Score</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -696,22 +981,28 @@ with tab2:
 
     else:
         st.info("Please upload your college survey CSV to unlock the analytics dashboard.")
-        st.image("https://img.icons8.com/illustrations/official/256/upload-to-cloud.png", width=100)
+        col_empty = st.columns(1)[0]
+        col_empty.markdown(
+            "<div style='text-align:center; padding: 20px;'>"
+            "<img src='https://img.icons8.com/illustrations/official/256/upload-to-cloud.png' width='120' style='margin: 20px auto;'>"
+            "</div>",
+            unsafe_allow_html=True
+        )
 
 st.markdown(
     """
     <div class='dev-footer'>
         <div class='dev-footer-title'>Development Team</div>
         <div class='dev-footer-names'>
-            <span>Arun Ulagappan S</span>
-            <span>•</span>
-            <span>Syndhavi S</span>
-            <span>•</span>
-            <span>Manjushree R G</span>
-            <span>•</span>
-            <span>Priyadharshini S</span>
-            <span>•</span>
-            <span>Dharshini Priya A</span>
+            <span class='dev-name-item'>Arun Ulagappan S</span>
+            <span class='dev-name-separator'>•</span>
+            <span class='dev-name-item'>Syndhavi S</span>
+            <span class='dev-name-separator'>•</span>
+            <span class='dev-name-item'>Manjushree R G</span>
+            <span class='dev-name-separator'>•</span>
+            <span class='dev-name-item'>Priyadharshini S</span>
+            <span class='dev-name-separator'>•</span>
+            <span class='dev-name-item'>Dharshini Priya A</span>
         </div>
     </div>
     """,
