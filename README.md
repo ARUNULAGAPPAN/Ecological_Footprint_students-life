@@ -24,6 +24,7 @@ A Streamlit dashboard that estimates and visualizes ecological footprint pattern
    streamlit run app.py
    ```
 4. Open the local URL shown in terminal (usually `http://localhost:8501`).
+5. Project is Live Now ! `http://ecofootprintstud.streamlit.app/`
 
 ## CSV notes
 For full campus analytics, your CSV should include columns similar to:
